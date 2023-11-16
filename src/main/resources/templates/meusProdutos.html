@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catálogo de produtos</title>
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Meus produtos</legend>
+            <a th:href="@{/produto/cadastroProduto/id={id}(id=${id})}" class="link-botao">Novo produto</a>
+        <table>
+            <tr>
+                <th>Descrição</th>               
+                <th>Preço</th>
+                <th>Quantidade</th>
+            </tr>
+            <tbody>
+                <tr th:each="produto : ${listaProdutos}">
+                    <td><span th:text="${produto.descricao}"></span></td>
+                    <td>R$ <span th:text="${produto.preco}"></span></td>
+                    <td><span th:text="${produto.quantidade}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="history.back()">Voltar</button>
+        </fieldset>
+        
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catálogo de produtos</title>
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Usuários registrados</legend>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo de usuário</th>
+                    <th>Logar</th>
+                </tr>
+                <tbody>
+                    <tr th:each="usuario : ${listaUsuarios}">
+                        <td><span th:text="${usuario.nome}"></span></td>
+                        <td><span th:text="${usuario.tipoUsuario}"></span></td>
+                        <td><a th:href="@{/produto/catalogo/id={id}(id=${usuario.id})}" class="link-botao">Entrar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="history.back()">Voltar</button>
+        </fieldset>
+        
+    </body>
+</html>

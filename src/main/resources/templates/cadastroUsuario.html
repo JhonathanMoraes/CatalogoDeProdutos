@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catálogo de produtos</title>
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Cadastrar novo usuário</legend>
+
+            <form th:action="cadastrarUsuario" method="POST">
+
+                <div class="input-item">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Nome" required> 
+                </div>
+
+                <div class="input-item">
+                    <label for="tipoUsuario">Tipo de usuário:</label>
+                    <select id="tipoUsuario" name="tipoUsuario">
+                        <option value="Loja">Loja</option>
+                        <option value="Vendedor">Vendedor</option>
+                        <option value="Consumidor">Consumidor</option>
+                    </select>
+                </div>
+
+                <div class="input-item">
+                    <input type="submit" value="Cadastrar">
+                </div>
+            </form>
+            <button onclick="history.back()">Voltar</button>
+        </fieldset>
+    </body>
+</html>

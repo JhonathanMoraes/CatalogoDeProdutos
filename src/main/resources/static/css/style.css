@@ -1,0 +1,67 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffcccc;
+}
+
+body * {
+    margin: 5px;
+}
+
+p {
+    align-self: center;
+}
+
+fieldset {
+    width: 800px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 10px;
+    background-color: white;
+}
+
+legend {
+    background-color: #ff3333;
+    color: white;
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #ff3333;
+    color: white;
+}
+
+form {
+    width: 100%;
+}
+
+.input-item {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.link-botao {
+    background-color: #ff3333;
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+}
