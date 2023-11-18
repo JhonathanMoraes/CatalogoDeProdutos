@@ -14,20 +14,20 @@
             <table>
                 <tr>
                     <th>Descrição</th>
-                    <th>ID do vendedor</th>                
+                    <th>Nome do vendedor</th>                
                     <th>Preço</th>
                     <th>Quantidade</th>
                 </tr>
                 <tbody>
                     <tr th:each="produto : ${listaProdutos}">
                         <td><span th:text="${produto.descricao}"></span></td>
-                        <td><span th:text="${produto.usuarioId.id}"></span></td>
+                        <td><span th:text="${produto.usuarioId.nome}"></span></td>
                         <td>R$ <span th:text="${produto.preco}"></span></td>
                         <td><span th:text="${produto.quantidade}"></span></td>
                     </tr>
                 </tbody>
             </table>
-            <button onclick="history.back()">Voltar</button>
+            <a href="/usuario/login.html" class="link-botao">Voltar</a>
         </fieldset>
 
     </body>

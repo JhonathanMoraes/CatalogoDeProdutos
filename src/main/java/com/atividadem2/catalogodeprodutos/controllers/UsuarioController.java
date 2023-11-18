@@ -49,6 +49,11 @@ public class UsuarioController {
     
     
     
+    @GetMapping(value = "index.html")
+    public String indexPage(){
+        return "index";
+    }
+    
     @GetMapping(value = "login.html")
     public String loginPage(Model model){
         listarUsuarios(model);
