@@ -56,7 +56,9 @@ form {
 
 .input-item {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
+    flex-grow: 1;
+    align-items: flex-start;
 }
 
 .link-botao {
@@ -64,4 +66,8 @@ form {
     color: white;
     padding: 5px;
     text-decoration: none;
+}
+
+.w-100{
+    width: 100%;
 }

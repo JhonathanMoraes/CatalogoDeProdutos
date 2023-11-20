@@ -1,8 +1,12 @@
-
 package com.atividadem2.catalogodeprodutos.controllers;
 
 import com.atividadem2.catalogodeprodutos.controllers.services.ProdutoServices;
 import com.atividadem2.catalogodeprodutos.models.Produto;
+import com.atividadem2.catalogodeprodutos.models.produtoDecorator.DescontoNatal;
+import com.atividadem2.catalogodeprodutos.models.produtoDecorator.DescontoPersonalizado;
+import com.atividadem2.catalogodeprodutos.models.produtoDecorator.Preco;
+import com.atividadem2.catalogodeprodutos.models.produtoDecorator.PrecoBase;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,55 +24,62 @@ public class ProdutoController {
 
     @Autowired
     ProdutoServices service;
-    
+
     @PostMapping(value = "cadastrarProduto")
-    public String cadastrarProduto(Produto produto, @RequestParam Long usuarioId){
-        // TODO
+    public String cadastrarProduto(Produto produto, @RequestParam Long usuarioId, @RequestParam(required = false, defaultValue = "semDesconto") List<String> descontoSelected, @RequestParam(required = false, defaultValue = "0.0") double taxaDesconto) {
+        Preco preco = new PrecoBase(produto.getPreco());
+        
+        if (descontoSelected.contains("descontoNatal")) {
+            preco = new DescontoNatal(preco);
+        }
+        if (descontoSelected.contains("descontoPersonalizado")) {
+            preco = new DescontoPersonalizado(preco, taxaDesconto);
+        }
+        
+        produto.setPreco(preco.precoProduto());
         service.cadastrar(produto);
         return "redirect:/produto/meusProdutos/id=" + usuarioId;
     }
-    
+
     @PutMapping(value = "/{id}")
-    public void AtualizarProduto(Produto produto, @PathVariable Long id){
+    public void AtualizarProduto(Produto produto, @PathVariable Long id) {
         service.atualizar(produto, id);
     }
-    
+
     @DeleteMapping(value = "/{id}")
-    public void deletarProduto(@PathVariable Long id){
+    public void deletarProduto(@PathVariable Long id) {
         service.deletar(id);
     }
-    
+
     @GetMapping(value = "/buscarProdutoPorIdProduto/{id}")
-    public Model buscarProdutoPorIdProduto(@PathVariable Long id, Model model){
+    public Model buscarProdutoPorIdProduto(@PathVariable Long id, Model model) {
         return model.addAttribute(service.buscarPorIdProduto(id));
     }
-    
+
     @GetMapping(value = "/buscarProdutoPorIdUsuario/{id}")
-    public Model buscarProdutoPorIdUsuario(@PathVariable Long id, Model model){
+    public Model buscarProdutoPorIdUsuario(@PathVariable Long id, Model model) {
         return model.addAttribute("listaProdutos", service.buscarPorIdUsuario(id));
     }
-    
+
     @GetMapping
-    public Model listarProdutos(Model model){
-        return model.addAttribute( "listaProdutos",service.listarTodos());
+    public Model listarProdutos(Model model) {
+        return model.addAttribute("listaProdutos", service.listarTodos());
     }
-    
-    
-    
+
     @GetMapping(value = "catalogo/id={id}")
-    public String catalogoPage(@PathVariable Long id, Model model){
+    public String catalogoPage(@PathVariable Long id, Model model) {
         listarProdutos(model);
         return "catalogo";
     }
-    
+
     @GetMapping(value = "meusProdutos/id={id}")
-    public String meusProdutosPage(@PathVariable Long id, Model model){
+    public String meusProdutosPage(@PathVariable Long id, Model model) {
         buscarProdutoPorIdUsuario(id, model);
         return "meusProdutos";
     }
-    
+
     @GetMapping(value = "cadastroProduto/id={id}")
-    public String cadastroProdutoPage(@PathVariable Long id, Model model){
+    public String cadastroProdutoPage(@PathVariable Long id, Model model) {
         return "cadastroProduto";
     }
 }

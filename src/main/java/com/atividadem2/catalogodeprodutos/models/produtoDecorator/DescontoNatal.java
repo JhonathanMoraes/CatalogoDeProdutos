@@ -4,17 +4,12 @@ package com.atividadem2.catalogodeprodutos.models.produtoDecorator;
 
 public class DescontoNatal extends ProdutoDecorator{
     
-    public DescontoNatal(Preco Preco) {
-        super(Preco);
+    public DescontoNatal(Preco preco) {
+        super(preco);
     }
     
     @Override
-    public double precoProduto(double preco){
-        return super.precoProduto(preco) - (0.10 * preco);
-    }
-
-    @Override
-    public double precoProduto(double preco, double valorDesconto) {
-        return super.precoProduto(preco) - (valorDesconto * (preco/100));
+    public double precoProduto() {
+        return super.precoProduto() - (super.precoProduto() * 0.10);
     }
 }

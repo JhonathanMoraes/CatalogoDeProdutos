@@ -7,6 +7,12 @@
         "th:href": {},
         "th:each": {},
         "th:field": {},
-        "th:value": {}
+        "th:value": {},
+        "th:attr": {
+            "context": "input"
+        },
+        "th:name": {
+            "context": "input"
+        }
     }
 }

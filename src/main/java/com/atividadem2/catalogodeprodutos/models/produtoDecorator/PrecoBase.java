@@ -4,14 +4,15 @@ package com.atividadem2.catalogodeprodutos.models.produtoDecorator;
 
 public class PrecoBase implements Preco{
     
-    
-    @Override
-    public double precoProduto(double preco){
-        return preco;
+    private double preco;
+
+    public PrecoBase(double preco) {
+        this.preco = preco;
     }
 
     @Override
-    public double precoProduto(double preco, double valorDesconto) {
+    public double precoProduto(){
         return preco;
     }
+
 }
